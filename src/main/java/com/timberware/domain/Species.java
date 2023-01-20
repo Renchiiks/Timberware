@@ -1,9 +1,9 @@
 package com.timberware.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "species")
 public class Species {
     @Id
     private Long id;

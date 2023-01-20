@@ -1,9 +1,9 @@
 package com.timberware.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name="departments")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

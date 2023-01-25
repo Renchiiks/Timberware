@@ -4,40 +4,36 @@ package com.timberware.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="assortments")
+@Table(name = "assortments")
 public class Assortment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long assortments_id;
+    private Long id;
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="department_id")
+    @JoinColumn(name = "department_id")
     private Department department;
     @ManyToOne
-    @JoinColumn(name="assortment_groups_id")
+    @JoinColumn(name = "assortment_groups_id")
     private AssortmentGroup assortmentGroup;
     @ManyToOne
-    @JoinColumn(name="species_id")
+    @JoinColumn(name = "species_id")
     private Species species;
 
     public Assortment() {
     }
 
-    public Assortment(Long id, String name, Department department, AssortmentGroup assortmentGroup, Species species) {
-        this.assortments_id = id;
+    public Assortment(String name) {
         this.name = name;
-        this.department = department;
-        this.assortmentGroup = assortmentGroup;
-        this.species = species;
     }
 
     public Long getId() {
-        return assortments_id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.assortments_id = id;
+        this.id = id;
     }
 
     public String getName() {

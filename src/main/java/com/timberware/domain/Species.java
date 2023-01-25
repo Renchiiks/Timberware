@@ -8,8 +8,9 @@ import java.util.List;
 public class Species {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long species_id;
+    private Long id;
     private String name;
+    @Column(unique=true)
     private String abbreviation;
     private SpeciesType type;
     @OneToMany (mappedBy = "species")
@@ -18,18 +19,19 @@ public class Species {
     public Species() {
     }
 
-    public Species(Long id, String name, SpeciesType type) {
-        this.species_id = id;
+    public Species(Long id, String name, String abbreviation, SpeciesType type) {
+        this.id = id;
         this.name = name;
+        this.abbreviation = abbreviation;
         this.type = type;
     }
 
     public Long getId() {
-        return species_id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.species_id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -46,5 +48,13 @@ public class Species {
 
     public void setType(SpeciesType type) {
         this.type = type;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 }

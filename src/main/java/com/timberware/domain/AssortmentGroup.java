@@ -8,7 +8,7 @@ import java.util.List;
 public class AssortmentGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long assortment_groups_id;
+    private Long id;
     private String name;
     @ManyToOne
     @JoinColumn(name="department_id")
@@ -19,18 +19,16 @@ public class AssortmentGroup {
     public AssortmentGroup() {
     }
 
-    public AssortmentGroup(Long id, String name, Department department) {
-        this.assortment_groups_id = id;
+    public AssortmentGroup(Long id, String name) {
+        this.id = id;
         this.name = name;
-        this.department = department;
     }
-
     public Long getId() {
-        return assortment_groups_id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.assortment_groups_id = id;
+        this.id = id;
     }
 
     public String getName() {

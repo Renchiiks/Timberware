@@ -1,10 +1,10 @@
 package com.timberware.domain;
 
 public enum SpeciesType {
-    //skuju koks
+    //skuju koks id = 0
     CONIFEROUS_TREE,
-    //lapu koks
+    //lapu koks id = 1
     DECIDUOUS_TREE,
-    //jaukti koki
+    //jaukti koki id = 2
     MIXED_TREE;
 }

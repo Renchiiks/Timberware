@@ -1,9 +1,10 @@
 package com.timberware.repository;
 
 import com.timberware.domain.Assortment;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface AssortmentRepository extends CrudRepository<Assortment, Long> {
+
+public interface AssortmentRepository extends JpaRepository<Assortment, Long> {
 }

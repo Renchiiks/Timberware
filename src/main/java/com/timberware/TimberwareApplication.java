@@ -1,4 +1,4 @@
-package com.timberware.timberware;
+package com.timberware;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

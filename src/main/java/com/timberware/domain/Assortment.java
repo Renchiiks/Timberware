@@ -7,19 +7,37 @@ import javax.persistence.*;
 @Table(name="assortments")
 public class Assortment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long assortments_id;
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name="department_id")
     private Department department;
+    @ManyToOne
+    @JoinColumn(name="assortment_groups_id")
     private AssortmentGroup assortmentGroup;
+    @ManyToOne
+    @JoinColumn(name="species_id")
     private Species species;
 
+    public Assortment() {
+    }
+
+    public Assortment(Long id, String name, Department department, AssortmentGroup assortmentGroup, Species species) {
+        this.assortments_id = id;
+        this.name = name;
+        this.department = department;
+        this.assortmentGroup = assortmentGroup;
+        this.species = species;
+    }
+
     public Long getId() {
-        return id;
+        return assortments_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.assortments_id = id;
     }
 
     public String getName() {

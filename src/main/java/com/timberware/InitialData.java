@@ -1,12 +1,15 @@
 package com.timberware;
 
 import com.timberware.domain.clasiffication.*;
-import com.timberware.domain.company.Bank;
+import com.timberware.domain.company.*;
 import com.timberware.repository.classification.AssortmentGroupRepository;
 import com.timberware.repository.classification.AssortmentRepository;
 import com.timberware.repository.classification.DepartmentRepository;
 import com.timberware.repository.classification.SpeciesRepository;
+import com.timberware.repository.company.AddressRepository;
 import com.timberware.repository.company.BankRepository;
+import com.timberware.repository.company.CertificateRepository;
+import com.timberware.repository.company.CompanyRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -23,12 +26,21 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
 
     private final BankRepository bankRepository;
 
-    public InitialData(DepartmentRepository departmentRepository, AssortmentGroupRepository assortmentGroupRepository, SpeciesRepository speciesRepository, AssortmentRepository assortmentRepository, BankRepository bankRepository) {
+    private final CertificateRepository certificateRepository;
+    private final CompanyRepository companyRepository;
+    private final AddressRepository addressRepository;
+
+
+    public InitialData(DepartmentRepository departmentRepository, AssortmentGroupRepository assortmentGroupRepository, SpeciesRepository speciesRepository, AssortmentRepository assortmentRepository, BankRepository bankRepository, CertificateRepository certificateRepository, CompanyRepository companyRepository, AddressRepository addressRepository) {
         this.departmentRepository = departmentRepository;
         this.assortmentGroupRepository = assortmentGroupRepository;
         this.speciesRepository = speciesRepository;
         this.assortmentRepository = assortmentRepository;
         this.bankRepository = bankRepository;
+        this.certificateRepository = certificateRepository;
+        this.companyRepository = companyRepository;
+        this.addressRepository = addressRepository;
+
     }
 
     @Override
@@ -53,8 +65,34 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
             loadBanks();
         }
 
+        if(companyRepository.count()==0){
+            loadCompanies();
+        }
+        if(addressRepository.count()==0) {
+            loadAddresses();
+        }
+        if(certificateRepository.count()==0){
+            loadCertificates();
+        }
     }
 
+    private void loadAddresses() {
+        Address address = new Address(1L, "Adresse", true, false,false, true);
+        address.setCompany(companyRepository.getReferenceById(1L));
+        addressRepository.save(address);
+    }
+    private void loadCertificates() {
+        Certificate certificate1 = new Certificate(1L, "American Tree Farm System", "ATFS@-O15552", true );
+        certificate1.setCompany(companyRepository.getReferenceById(2L));
+        certificateRepository.save(certificate1);
+    }
+
+    private void loadCompanies() {
+        Company company1 = new Company(1L,"Company", 555000333L, true);
+        Company company2 = new Company(2L,"Companyy", 555000333L, true);
+        companyRepository.save(company1);
+        companyRepository.save(company2);
+    }
 
     private void loadDepartments() {
         Department department1 = new Department(1L, "Apaļkoks");
@@ -209,6 +247,7 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
         bankRepository.save(bank10);
         bankRepository.save(bank1);
 
-
     }
+
+
 }

@@ -4,7 +4,7 @@ package com.timberware.domain.clasiffication;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "assortments")
+@Table(name = "classification_assortments")
 public class Assortment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

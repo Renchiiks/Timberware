@@ -7,14 +7,13 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "banks")
+@Table(name = "company_banks")
 public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Length(min = 8, max = 11)
     @Column(unique = true, length = 11)
-    @NotNull
     private String BIC;
     @Column(unique = true)
     @NotNull

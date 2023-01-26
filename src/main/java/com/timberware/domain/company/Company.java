@@ -19,11 +19,9 @@ public class Company {
     private boolean VATTaxPayer;
     private String homepage;
     @OneToMany(mappedBy = "company")
-    @NotEmpty
     private Set<Address> addresses;
 
     @OneToMany(mappedBy = "company")
-    @NotEmpty
     private Set<ContactPerson> contactPerson;
 
     @OneToMany(mappedBy = "company")
@@ -35,15 +33,12 @@ public class Company {
     public Company() {
     }
 
-    public Company(Long id, String name, Long registrationNumber, boolean VATTaxPayer, String homepage, Set<Address> addresses, Set<ContactPerson> contactPerson, Set<Certificate> certificate, BankAccount bankAccount) {
+    public Company(Long id, String name, Long registrationNumber, boolean VATTaxPayer) {
         this.id = id;
         this.name = name;
         this.registrationNumber = registrationNumber;
         this.VATTaxPayer = VATTaxPayer;
-        this.homepage = homepage;
-        this.addresses = addresses;
-        this.contactPerson = contactPerson;
-        this.certificate = certificate;
+
     }
 
     public String getHomepage() {

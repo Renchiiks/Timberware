@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "certificates")
+@Table(name = "company_certificates")
 public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +24,20 @@ public class Certificate {
     public Certificate() {
     }
 
-    public Certificate(Long id, String name, String code, boolean active, String notes) {
+    public Certificate(Long id, String name, String code, boolean active) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.active = active;
-        this.notes = notes;
+
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Long getId() {

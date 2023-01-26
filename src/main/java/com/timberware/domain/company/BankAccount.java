@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "bank_accounts")
+@Table(name = "company_bank_accounts")
 public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

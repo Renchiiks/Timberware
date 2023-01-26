@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "company_addresses")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,20 +21,18 @@ public class Address {
     private boolean active;
     @ManyToOne
     @JoinColumn(name = "company_id")
-    @NotNull
     private Company company;
 
     public Address() {
     }
 
-    public Address(Long id, String address, boolean actualAddress, boolean legalAddress, boolean deliveryAddress, boolean active, Company company) {
+    public Address(Long id, String address, boolean actualAddress, boolean legalAddress, boolean deliveryAddress, boolean active) {
         this.id = id;
         this.address = address;
         this.actualAddress = actualAddress;
         this.legalAddress = legalAddress;
         this.deliveryAddress = deliveryAddress;
         this.active = active;
-        this.company = company;
     }
 
     public Long getId() {

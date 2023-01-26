@@ -1,6 +1,7 @@
 package com.timberware.domain.company;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "certificates")
@@ -8,12 +9,15 @@ public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String code;
+    @NotNull
     private boolean active;
     private String notes;
 
-    @OneToOne()
+    @ManyToOne()
     @JoinColumn(name = "certificate_id")
     private Company company;
 

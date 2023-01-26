@@ -2,7 +2,6 @@ package com.timberware.domain.company;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Set;
 
 @Entity
 @Table(name = "contact_persons")
@@ -16,19 +15,23 @@ public class ContactPerson {
     private String email;
     private int number;
     private boolean active;
-    @OneToMany(mappedBy = "contactPerson")
-    Set<Company> companiesSet;
+    private boolean signatureApproved;
+    @ManyToOne
+    @JoinColumn(name = "contact_person_id")
+    Company company;
 
     public ContactPerson() {
     }
 
-    public ContactPerson(Long id, String fullName, String position, String email, int number, boolean active) {
+    public ContactPerson(Long id, String fullName, String position, String email, int number, boolean active, boolean signatureApproved, Company companiesSet) {
         this.id = id;
         this.fullName = fullName;
         this.position = position;
         this.email = email;
         this.number = number;
         this.active = active;
+        this.signatureApproved = signatureApproved;
+        this.company = companiesSet;
     }
 
     public Long getId() {

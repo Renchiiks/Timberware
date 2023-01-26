@@ -3,6 +3,7 @@ package com.timberware.domain.company;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "bank_accounts")
@@ -11,22 +12,32 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @CreditCardNumber
+    @NotNull
     private String accountNumber;
+    @NotNull
     private boolean defaultAcc;
+    @NotNull
     private boolean active;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "bank_id")
+    @NotNull
     private Bank bank;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    @NotNull
+    private Company company;
 
     public BankAccount() {
     }
 
-    public BankAccount(Long id, String accountNumber, boolean defaultAcc, boolean active, Bank bank) {
+    public BankAccount(Long id, String accountNumber, boolean defaultAcc, boolean active, Bank bank, Company company) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.defaultAcc = defaultAcc;
         this.active = active;
         this.bank = bank;
+        this.company = company;
     }
 
     public Long getId() {

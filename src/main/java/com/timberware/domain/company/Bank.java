@@ -3,6 +3,7 @@ package com.timberware.domain.company;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -13,8 +14,10 @@ public class Bank {
     private Long id;
     @Length(min = 8, max = 11)
     @Column(unique = true, length = 11)
+    @NotNull
     private String BIC;
     @Column(unique = true)
+    @NotNull
     private String name;
     @OneToMany(mappedBy = "bank")
     private Set<BankAccount> bankAccounts;

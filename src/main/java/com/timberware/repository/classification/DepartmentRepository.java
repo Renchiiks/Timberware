@@ -1,6 +1,6 @@
-package com.timberware.repository;
+package com.timberware.repository.classification;
 
-import com.timberware.domain.Department;
+import com.timberware.domain.clasiffication.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

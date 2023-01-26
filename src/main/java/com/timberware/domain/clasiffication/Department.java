@@ -1,20 +1,21 @@
-package com.timberware.domain;
+package com.timberware.domain.clasiffication;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="departments")
+@Table(name = "departments")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy="department")
+    @OneToMany(mappedBy = "department")
     private List<AssortmentGroup> assortmentGroups;
 
-    @OneToMany(mappedBy="department")
+    @OneToMany(mappedBy = "department")
     private List<Assortment> assortments;
 
     public Department() {
@@ -22,10 +23,6 @@ public class Department {
 
     public Department(Long id, String name) {
         this.id = id;
-        this.name = name;
-    }
-
-    public Department(String name) {
         this.name = name;
     }
 

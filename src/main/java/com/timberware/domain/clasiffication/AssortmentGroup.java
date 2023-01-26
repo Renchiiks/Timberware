@@ -1,4 +1,4 @@
-package com.timberware.domain;
+package com.timberware.domain.clasiffication;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +9,7 @@ public class AssortmentGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique=true)
     private String name;
     @ManyToOne
     @JoinColumn(name="department_id")

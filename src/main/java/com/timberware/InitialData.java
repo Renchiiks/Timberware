@@ -1,10 +1,12 @@
 package com.timberware;
 
-import com.timberware.domain.*;
-import com.timberware.repository.AssortmentGroupRepository;
-import com.timberware.repository.AssortmentRepository;
-import com.timberware.repository.DepartmentRepository;
-import com.timberware.repository.SpeciesRepository;
+import com.timberware.domain.clasiffication.*;
+import com.timberware.domain.company.Bank;
+import com.timberware.repository.classification.AssortmentGroupRepository;
+import com.timberware.repository.classification.AssortmentRepository;
+import com.timberware.repository.classification.DepartmentRepository;
+import com.timberware.repository.classification.SpeciesRepository;
+import com.timberware.repository.company.BankRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -19,11 +21,14 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
 
     private final AssortmentRepository assortmentRepository;
 
-    public InitialData(DepartmentRepository departmentRepository, AssortmentGroupRepository assortmentGroupRepository, SpeciesRepository speciesRepository, AssortmentRepository assortmentRepository) {
+    private final BankRepository bankRepository;
+
+    public InitialData(DepartmentRepository departmentRepository, AssortmentGroupRepository assortmentGroupRepository, SpeciesRepository speciesRepository, AssortmentRepository assortmentRepository, BankRepository bankRepository) {
         this.departmentRepository = departmentRepository;
         this.assortmentGroupRepository = assortmentGroupRepository;
         this.speciesRepository = speciesRepository;
         this.assortmentRepository = assortmentRepository;
+        this.bankRepository = bankRepository;
     }
 
     @Override
@@ -42,6 +47,10 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
         }
         if(assortmentRepository.count()==0){
             loadAssortments();
+        }
+
+        if(bankRepository.count()==0){
+            loadBanks();
         }
 
     }
@@ -177,6 +186,29 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
         assortmentRepository.save(assortment10);
 
     }
+    private void loadBanks() {
+        Bank bank1 = new Bank(1L, "PARXLV22XXX", "Citadele banka");
+        Bank bank2 = new Bank(2L, "HABALV22XXX", "Swedbank");
+        Bank bank3 = new Bank(3L, "HABAEE2XXXX", "AS Swedbank");
+        Bank bank4 = new Bank(4L, "LPNSLV21XXX", "Latvijas Pasts Vas");
+        Bank bank5 = new Bank(5L, "TRELLV22XXX", "Valsts Kase");
+        Bank bank6 = new Bank(6L, "HANDLV22XXX", "Svenska Handelsbanken AB Latvijas filiāle");
+        Bank bank7 = new Bank(7L, "RIKOLV2XXXX", "DNB banka");
+        Bank bank8 = new Bank(8L, "NDEAEE2XXXX", "Nordea Bank AB Eesti filiaal");
+        Bank bank9 = new Bank(9L, "RAIFCH22B92", "Raiffeisenbank Malters");
+        Bank bank10 = new Bank(10L, "RAIFCH22181", "Banque Raiffeisen Région Genève Rhône");
+
+        bankRepository.save(bank7);
+        bankRepository.save(bank2);
+        bankRepository.save(bank5);
+        bankRepository.save(bank6);
+        bankRepository.save(bank4);
+        bankRepository.save(bank8);
+        bankRepository.save(bank3);
+        bankRepository.save(bank9);
+        bankRepository.save(bank10);
+        bankRepository.save(bank1);
 
 
+    }
 }
